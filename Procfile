@@ -1,1 +1,1 @@
-web: gunicorn byteblog.wsgi:application
+web: gunicorn byteblog.wsgi
