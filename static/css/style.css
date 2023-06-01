@@ -1,0 +1,12 @@
+body {
+    background-color: rgb(47, 47, 47);
+}
+
+.post-title {
+    text-decoration: none;
+}
+
+i {
+    text-decoration: none;
+    color: #ffc107;
+}
