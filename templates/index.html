@@ -5,12 +5,12 @@
 <div class="container-fluid">
     <div class="row">
         <!-- For Blog Entries -->
-        <div class="col-12 mt-3 left">
+        <div class="col-12 left">
             <div class="row">
                 {% for post in post_list %}
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
+                <div class="col-md-3">
+                    <div class="card mb-3">
+                        <div class="card-body bg-secondary">
                             <div>
                                 {% if "placeholder" in post.featured_image.url %}
                                 <img class="card-img-top"
@@ -19,20 +19,20 @@
                                 <img class="card-img-top" src=" {{ post.featured_image.url }}">
                                 {% endif %}
                                 <div class="image-flash">
-                                    <p class="author">Author: {{ post.author }}</p>
+                                    <p class="">Author: {{ post.author }}</p>
                                 </div>
                             </div>
-                            <a href="#" class="post-link">
+                            <a href="#" class="text-warning">
                                 <h2 class="card-title">{{ post.title }}</h2>
                                 <p class="card-text">{{ post.excerpt }}</p>
                             </a>
                             <hr />
-                            <p class="card-text text-muted h6">{{ post.created_on}} <i class="far fa-heart"></i>
+                            <p class="card-text text-muted h6">{{ post.created_on}} <i class="far fa-heart heart"></i>
                                 {{ post.number_of_likes }}</p>
                         </div>
                     </div>
                 </div>
-                {% if forloop.counter|divisibleby:3 %}
+                {% if forloop.counter|divisibleby:4 %}
             </div>
             <div class="row">
                 {% endif %}
@@ -42,4 +42,4 @@
     </div>
 </div>
 
-{%endblock%}
+{% endblock %}

@@ -6,7 +6,15 @@ body {
     text-decoration: none;
 }
 
-i {
+.socials i {
     text-decoration: none;
     color: #ffc107;
+}
+
+a {
+    text-decoration: none;
+}
+
+.heart {
+    color: #0dcaf0;
 }
