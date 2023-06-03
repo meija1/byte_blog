@@ -2,7 +2,6 @@
 from pathlib import Path
 import os
 import dj_database_url
-import django_heroku
 if os.path.isfile('env.py'):
     import env
 
@@ -18,7 +17,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['byte-blog-app.herokuapp.com', 'localhost',
 '8000-meija1-byteblog-mncxluejxwz.ws-eu98.gitpod.io']
@@ -133,4 +132,9 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())
+MIDDLEWARE = [
+    # ...
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # ...
+]
