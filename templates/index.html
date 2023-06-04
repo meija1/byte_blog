@@ -12,13 +12,15 @@
                     <div class="card mb-3">
                         <div class="card-body bg-secondary">
                             <div>
+                                <!-- Main image for the post -->
                                 {% if "placeholder" in post.featured_image.url %}
                                 <img class="card-img-top"
                                     src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
                                 {% else %}
                                 <img class="card-img-top" src=" {{ post.featured_image.url }}">
                                 {% endif %}
-                                <div class="image-flash">
+                                <div>
+                                    <!-- Posts author, created date and likes-->
                                     <p class="">Author: {{ post.author }}</p>
                                 </div>
                             </div>
