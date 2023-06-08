@@ -34,9 +34,9 @@
                 </li>
             </ul>
             {% if user.is_authenticated %}
-            <button class="btn btn-outline-warning" type="button">Logout</button>
+            <a href="{% url 'account_logout' %}" class="btn btn-outline-warning" type="button">Logout</a>
             {% else %}
-            <button class="btn btn-outline-warning" type="button">Login/Register</button>
+            <a href="{% url 'account_signup' %}" class="btn btn-outline-warning" type="button">Login/Register</a>
             {% endif %}
         </div>
     </nav>
