@@ -18,3 +18,7 @@ a {
 .heart {
     color: #0dcaf0;
 }
+
+h1, p, h2, h3 {
+    color: white;
+}
