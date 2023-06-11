@@ -22,3 +22,7 @@ a {
 h1, p, h2, h3 {
     color: white;
 }
+
+.errorlist {
+    color: rgb(255, 143, 143);
+}
