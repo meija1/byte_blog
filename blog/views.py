@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Post
+from .forms import CommentForm
 
 
 ''' Create a basic view for the website '''
@@ -22,5 +23,5 @@ class PostDetail(View):
                 liked =True
 
             return render(
-                request, "post_detail.html", {"post": post, "comments": comments, "liked": liked},
+                request, "post_detail.html", {"post": post, "comments": comments, "liked": liked, "comment_form": CommentForm()},
             )
