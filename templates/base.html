@@ -37,7 +37,7 @@
             <div class="dropdown me-2">
                 <a class="dropdown-toggle text-light" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ user }}<i class="fa fa-id-card-o px-2 text-info" aria-hidden="true"></i></a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Create a post</a></li>
+                <li><a class="dropdown-item" href="{% url 'create_post' %}">Create a post</a></li>
             </ul>
             </div>
             <a href="{% url 'account_logout' %}" class="btn btn-outline-warning" type="button">Logout</a>

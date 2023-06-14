@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Post
 from .forms import CommentForm
+from . import forms
 
 
 ''' Create a basic view for the website '''
@@ -25,3 +26,15 @@ class PostDetail(View):
             return render(
                 request, "post_detail.html", {"post": post, "comments": comments, "liked": liked, "comment_form": CommentForm()},
             )
+
+
+class PostUpload(View):
+
+    def blog_upload(request):
+        blog_form = forms.BlogForm()
+        if request.method == 'POST':
+            blog_form = forms.BlogForm(request.POST)
+        context = {
+                'blog_form': blog_form,
+            }
+        return render(request, "account/create_post.html", context=context)
