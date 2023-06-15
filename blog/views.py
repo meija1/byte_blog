@@ -34,6 +34,8 @@ class PostUpload(View):
         blog_form = forms.BlogForm()
         if request.method == 'POST':
             blog_form = forms.BlogForm(request.POST)
+            if blog_form.is_valid():
+                blog_form.save
         context = {
                 'blog_form': blog_form,
             }
