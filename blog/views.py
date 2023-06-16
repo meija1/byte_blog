@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic, View
 from .models import Post
-from .forms import CommentForm
+from .forms import CommentForm, BlogForm
 from . import forms
 
 
@@ -27,16 +27,18 @@ class PostDetail(View):
                 request, "post_detail.html", {"post": post, "comments": comments, "liked": liked, "comment_form": CommentForm()},
             )
 
-
 class PostUpload(View):
 
     def blog_upload(request):
-        blog_form = forms.BlogForm()
+        blog_form = BlogForm
         if request.method == 'POST':
-            blog_form = forms.BlogForm(request.POST)
+            blog_form = BlogForm(request.POST)
             if blog_form.is_valid():
-                blog_form.save
+                
+                return redirect('home')
+        
         context = {
-                'blog_form': blog_form,
-            }
+            'blog_form': blog_form
+        }
+        
         return render(request, "account/create_post.html", context=context)

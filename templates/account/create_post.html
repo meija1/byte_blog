@@ -4,8 +4,8 @@
 
 <h2 class="text-info text-center">Create a Post</h2>
 <div class="col-md-8 mx-auto text-center d-flex justify-content-center">
-<form class="p-3" method="POST" enctype="multipart/form-data">
-    {{ blog_form.as_p }}
+<form class="p-5 text-info" method="POST" enctype="multipart/form-data">
+    {{ blog_form }}
     {% csrf_token %}
     <button class="btn btn-outline-warning" type="submit">Submit</button>
 </form>
