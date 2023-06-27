@@ -54,14 +54,15 @@ class PostDetail(View):
 class PostUpload(View):
 
     def blog_upload(request):
+        blog_form = BlogForm(request.POST)
         if request.method == 'POST':
-            blog_form = BlogForm(request.POST or None, instance=form)
             if blog_form.is_valid():
-                blog_form.save()
-                return HttpResponseRedirect("/"+id)
+                
+                form = blog_form.save(commit=False)
+                form.author = request.user
+                form.save()
+                return redirect('home')
+                
         
-        context = {
-            'blog_form': blog_form
-        }
         
-        return render(request, "account/create_post.html", context=context)
+        return render(request, "account/create_post.html", {"blog_form": blog_form})
