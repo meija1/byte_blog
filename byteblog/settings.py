@@ -20,7 +20,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = ['byte-blog-app.herokuapp.com', 'localhost',
-'8000-meija1-byteblog-mncxluejxwz.ws-eu100.gitpod.io',]
+'8000-meija1-byteblog-mncxluejxwz.ws-eu101.gitpod.io',]
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
