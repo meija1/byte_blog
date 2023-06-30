@@ -17,6 +17,7 @@
         <div class="col-md-5">
             <h2 class="text-warning">{{ post.title }}</h2>
             <p class="text-light">{{ post.author }} | {{ post.created_on }}</p>
+            <strong class="text-info"><i class="far fa-heart heart p-1"></i>{{ post.number_of_likes }}</strong>
         </div>
         
     </div>
@@ -26,7 +27,47 @@
         <div class="col-md-10 --bs-dark-border-subtle">
             <h5 class="card-text">{{ post.content|safe }}</h5>
         </div>
-        <div class="col-md-10 card mb-5">
+        <div class="row">
+            <div class="col-1">
+                {% with comments.count as total_comments %}
+                <strong class="text-info"><i class="far fa-comments p-1"></i>{{ total_comments }}</strong>
+                {% endwith %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr class="text-warning">
+            </div>
+        </div>
+        <div>
+
+            <div class="row">
+                <div class="col-md-8 card mt-2 bg-secondary">
+                    <h4>Comments:</h4>
+                    <div class="card-body">
+                        {% for comment in comments %}
+                        <div>
+                            <p>
+                                {{ comment.name }}
+                                <span class="">
+                                    {{ comment.created_on }}
+                                </span>
+                            </p>
+                            {{ comment.body | linebreaks }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <hr class="text-warning">
+                </div>
+            </div>
+            <div>
+        </div>
+        <div class="col-md-8 mb-5 ">
             {% if commented %}
             <div class="alert alert-success">
                 Your comment is awaiting approval
