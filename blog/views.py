@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic, View
-from .models import Post
+from .models import Post, Category
 from .forms import CommentForm, BlogForm
 from . import forms
 
@@ -66,5 +66,20 @@ class PostUpload(View):
                 return redirect('home')
             else:
                 blog_form = BlogForm()
-        
+
         return render(request, "account/create_post.html", {"blog_form": blog_form})
+
+
+class CategoryView(View):
+
+    def category_view(request, id):
+        model = Category
+        category = get_object_or_404(Category, id=id)
+        template_name = 'index.html'
+
+        context = {
+            'categories': categories
+        }
+
+        return render(request, 'home', context, {'post': Post.objects.filter(category=category)})
+        
