@@ -69,17 +69,4 @@ class PostUpload(View):
 
         return render(request, "account/create_post.html", {"blog_form": blog_form})
 
-
-class CategoryView(View):
-
-    def category_view(request, id):
-        model = Category
-        category = get_object_or_404(Category, id=id)
-        template_name = 'index.html'
-
-        context = {
-            'categories': categories
-        }
-
-        return render(request, 'home', context, {'post': Post.objects.filter(category=category)})
         

@@ -7,15 +7,15 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
 
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
-        ordering = ['title']
+        ordering = ['name']
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 ''' Populate admin post with features '''
@@ -30,7 +30,7 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
-    category = models.ManyToManyField(Category)
+    category = models.CharField(max_length=200, default='uncategorized')
 
 
     class Meta:
