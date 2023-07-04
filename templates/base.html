@@ -27,8 +27,13 @@
                         Categories
                     </a>
                     <ul class="dropdown-menu bg-body-secondary">
-                        <li><a class="dropdown-item" href="{{ category.name }}"{{ category.name }}>Code</a></li>
-                        
+                        {% for category in categories %}
+                        <li>
+                            {{ category.name }}
+                            <a class="dropdown-item" href="{% url 'category' category.slug %}"></a>
+                            
+                        </li>
+                        {% endfor %}
                     </ul>
                 </li>
             </ul>

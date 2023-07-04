@@ -6,7 +6,7 @@ from django.utils.text import slugify
 STATUS = ((0, "Draft"), (1, "Published"))
 
 class Category(models.Model):
-    name = models.CharField(max_length=200, default=None, null=True)
+    name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
 
     class Meta:
@@ -14,8 +14,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
-
 
 
 ''' Populate admin post with features '''
@@ -30,7 +28,7 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="category")
     
 
 
