@@ -2,18 +2,18 @@ from django.contrib import admin
 from .models import Post, Comment, Category
 from django_summernote.admin import SummernoteModelAdmin
 
-''' Create Admin panel '''
 @admin.register(Category)
-class CategoriesAdmin(admin.ModelAdmin):
-    ordering =('name',)
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ('name',)}
 
 
+''' Create Admin panel '''
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
 
     prepopulated_fields = {'slug': ('title',)}
     list_filter = ('status', 'created_on')
-    list_display = ('title', 'slug', 'status', 'category', 'created_on')
+    list_display = ('title', 'slug', 'status', 'created_on')
     search_fields = ['title', 'content']
     summernote_fields = ('content')
 

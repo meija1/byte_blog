@@ -54,7 +54,7 @@ class PostUpload(View):
 
     def blog_upload(request):
 
-        queryset = Post.objects.all().filter(status=1)
+        queryset = Post.objects.all()
         blog_form = BlogForm()
         if request.method == 'POST':
             blog_form = BlogForm(request.POST)
@@ -63,6 +63,8 @@ class PostUpload(View):
                 form.author = request.user
                 form.post = queryset
                 form.save()
+                blog_form.save_m2m()
+                
                 return redirect('home')
             else:
                 blog_form = BlogForm()

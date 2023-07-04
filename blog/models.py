@@ -5,17 +5,17 @@ from django.utils.text import slugify
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
-
 class Category(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, default=None, null=True)
+    slug = models.SlugField(unique=True)
 
     class Meta:
-        verbose_name = "Category"
-        verbose_name_plural = "Categories"
-        ordering = ['name']
+        verbose_name_plural = "categories"
 
     def __str__(self):
         return self.name
+
+
 
 
 ''' Populate admin post with features '''
@@ -30,7 +30,8 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
-    category = models.CharField(max_length=200, default='uncategorized')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None, null=True)
+    
 
 
     class Meta:
