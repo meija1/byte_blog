@@ -72,14 +72,6 @@ class PostUpload(View):
         return render(request, "account/create_post.html", {"blog_form": blog_form})
 
 
-class CategoryView(View):
 
-    def category(request, slug):
-
-        post = Post.objects.filter(category_slug=slug).filter(status=1)
-        category = Category.objects.get(slug=slug)
-        categories = Category.objects.all()
-
-        return render(request, "base.html", {"post": post, "category": category, "categories": categories})
 
         
