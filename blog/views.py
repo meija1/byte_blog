@@ -74,8 +74,7 @@ class PostUpload(View):
 
 def category(request, slug):
 
-    category = Category.objects.get(slug=slug)
-    post_category = Post.objects.filter(category=slug)
+    post_category = Post.objects.filter(category__slug=slug)
     
     return render(request, 'category.html', {'post_category': post_category, 'category': category})
 
