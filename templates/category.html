@@ -7,11 +7,12 @@
         <!-- For Blog Entries -->
         <div class="col-12 left mb-5">
             <div class="row">
-                {% for post in post_list %}
+                {% for post in post_category %}
                 <div class="col-md-3">
                     <div class="card mb-3">
                         <div class="card-body bg-secondary">
                             <div>
+                               <h1 class="text-info">{{ category }}</h1>
                                 <!-- Main image for the post -->
                                 {% if "placeholder" in post.featured_image.url %}
                                 <img class="card-img-top"
