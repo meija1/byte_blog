@@ -31,7 +31,6 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="category")
     
 
-
     class Meta:
         ordering = ["-created_on"]
 

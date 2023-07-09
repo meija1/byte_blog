@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from django.views import generic, View
 from .models import Post, Category
 from .forms import CommentForm, BlogForm
@@ -50,31 +51,33 @@ class PostDetail(View):
                 request, "post_detail.html", {"post": post, "comments": comments, "commented": True, "liked": liked, "comment_form": CommentForm()},
             )
 
-class PostUpload(View):
 
-    def blog_upload(request):
+def blog_upload(request):
 
         queryset = Post.objects.all()
         blog_form = BlogForm()
         if request.method == 'POST':
             blog_form = BlogForm(request.POST)
+            
             if blog_form.is_valid():
                 form = blog_form.save(commit=False)
                 form.author = request.user
                 form.post = queryset
                 form.save()
                 blog_form.save_m2m()
+                messages.add_message(request, messages.SUCCESS, "Form submited! Waiting approval..")
+                blog_form = BlogForm()
                 
-                return redirect('home')
+
             else:
                 blog_form = BlogForm()
 
-        return render(request, "account/create_post.html", {"blog_form": blog_form})
+        return render(request, "account/create_post.html", {"blog_form": blog_form, 'approved': True})
 
 
 def category(request, slug):
 
-    post_category = Post.objects.filter(category__slug=slug)
+    post_category = Post.objects.filter(category__slug=slug).filter(status=1)
     
     return render(request, 'category.html', {'post_category': post_category, 'category': category})
 
