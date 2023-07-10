@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from django.views import generic, View
+from django.http import HttpResponseRedirect
 from .models import Post, Category
 from .forms import CommentForm, BlogForm
 from . import forms
@@ -65,7 +66,7 @@ def blog_upload(request):
                 form.post = queryset
                 form.save()
                 blog_form.save_m2m()
-                messages.add_message(request, messages.SUCCESS, "Form submited! Waiting approval..")
+                messages.add_message(request, messages.SUCCESS, "Form submitted! Waiting approval..")
                 blog_form = BlogForm()
                 
 
@@ -81,4 +82,17 @@ def category(request, slug):
     
     return render(request, 'category.html', {'post_category': post_category, 'category': category})
 
+
+class PostLike(View):
+
+    def post(self, request, slug):
+
+        post = get_object_or_404(Post, slug=slug)
+
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
         
