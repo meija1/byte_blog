@@ -8,10 +8,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3 p-3">
-            {% if "placeholder" in post.featured_image.url %}
-            <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
-            {% else %}
-            <img src=" {{ post.featured_image.url }}" width="100%">
+            {% if post.category.slug == 'code' %}
+            <img class="card-img-top"
+                src="https://res.cloudinary.com/dqhxfqvdo/image/upload/v1689020844/Code_sckmh5.jpg">
+            {% elif post.category.slug == 'apps' %}
+            <img class="card-img-top" src="https://res.cloudinary.com/dqhxfqvdo/image/upload/v1689020880/Apps_ummulq.jpg">
+            {% else %}      
+            <img class="card-img-top"
+                src="https://res.cloudinary.com/dqhxfqvdo/image/upload/v1689020796/Games_ah8sad.jpg">                          
             {% endif %}
         </div>
         <div class="col-md-5">

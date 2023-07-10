@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load cloudinary %}
+
 {% block content %}
 
 <div class="container-fluid">
@@ -13,11 +15,14 @@
                         <div class="card-body bg-secondary">
                             <div>
                                 <!-- Main image for the post -->
-                                {% if "placeholder" in post.featured_image.url %}
+                                {% if post.category.slug == 'code' %}
                                 <img class="card-img-top"
-                                    src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
-                                {% else %}
-                                <img class="card-img-top" src=" {{ post.featured_image.url }}">
+                                    src="https://res.cloudinary.com/dqhxfqvdo/image/upload/v1689020844/Code_sckmh5.jpg">
+                                {% elif post.category.slug == 'apps' %}
+                                <img class="card-img-top" src="https://res.cloudinary.com/dqhxfqvdo/image/upload/v1689020880/Apps_ummulq.jpg">
+                                {% else %}      
+                                <img class="card-img-top"
+                                    src="https://res.cloudinary.com/dqhxfqvdo/image/upload/v1689020796/Games_ah8sad.jpg">                          
                                 {% endif %}
                                 <div>
                                     <!-- Posts author, created date and likes-->
