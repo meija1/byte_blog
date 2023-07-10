@@ -40,8 +40,9 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-10 --bs-dark-border-subtle">
-            <h5 class="card-text">{{ post.content|safe }}</h5>
+        <div class="col-md-8 --bs-dark-border-subtle">
+            <h5 class="text-light p-4">{{ post.content|safe }}</h5>
+            <hr class="text-warning">
         </div>
         <div class="row">
             <div class="col-1">
@@ -56,34 +57,26 @@
             </div>
         </div>
         <div>
-
             <div class="row">
-                <div class="col-md-8 card mt-2 bg-secondary">
-                    <h4>Comments:</h4>
+                <div class="col-md-8 card  bg-secondary">
+                    <h4 class="text-warning">Comments:</h4>
                     <div class="card-body">
                         {% for comment in comments %}
                         <div>
-                            <p>
+                            <p class="text-info">
                                 {{ comment.name }}
                                 <span class="">
                                     {{ comment.created_on }}
                                 </span>
                             </p>
                             {{ comment.body | linebreaks }}
+                            <hr class="text-warning">
                         </div>
                         {% endfor %}
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <hr class="text-warning">
-                </div>
-            </div>
-            <div>
-        </div>
-        <div class="col-md-8 mb-5 ">
+            
+        <div class="col-md-4 mb-5 ">
             {% if commented %}
             <div class="alert alert-success">
                 Your comment is awaiting approval
@@ -92,7 +85,7 @@
 
             {% if user.is_authenticated %}
 
-            <h3>Comment:</h3>
+            <h3 class="text-warning">Comment:</h3>
             <p>Post by: {{ user.username }}</p>
             <form method="post" >
                 {{ comment_form | crispy }}
@@ -103,6 +96,13 @@
             {% endif %}
             {% endif %}
         </div>
+        <div class="row">
+            <div class="col p-5">
+                <hr class="text-warning">
+            </div>
+        </div>
+    </div>
+    
     </div>
 </div>
 
