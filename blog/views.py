@@ -68,7 +68,6 @@ def blog_upload(request):
                 blog_form.save_m2m()
                 messages.add_message(request, messages.SUCCESS, "Form submitted! Waiting approval..")
                 blog_form = BlogForm()
-                
 
             else:
                 blog_form = BlogForm()
