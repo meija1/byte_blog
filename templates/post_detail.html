@@ -23,15 +23,18 @@
             <p class="text-light">{{ post.author }} | {{ post.created_on }} | {{ post.category }}</p>
             <div>
                 {% if user.is_authenticated %}
+                {% if user.id == post.author.id %}
+                        <button href="{% url 'post_delete' post.slug %}">Delete</button>
+                        {% endif %}
                 <form class="d-inline" action="{% url 'post_like' post.slug %}">
                     {% csrf_token %}
-                    {% if liked %}
-                    <button type="submit" class="btn" name="blogpost_id" value="{{ post.slug }}"><i class="fas fa-heart heart"></i></button>
+                        {% if liked %}
+                        <button type="submit" class="btn" name="blogpost_id" value="{{ post.slug }}"><i class="fas fa-heart heart"></i></button>
+                        {% else %}
+                        <button type="submit" class="btn" name="blogpost_id" value="{{ post.slug }}"><i class="far fa-heart heart"></i></button>
+                        {% endif %}
+                    </form>
                     {% else %}
-                    <button type="submit" class="btn" name="blogpost_id" value="{{ post.slug }}"><i class="far fa-heart heart"></i></button>
-                    {% endif %}
-                </form>
-                {% else %}
                 <strong class="text-info"><i class="far fa-heart heart p-1"></i></strong>
                 {% endif %}
                <strong class="text-info">{{ post.number_of_likes }}</strong> 
