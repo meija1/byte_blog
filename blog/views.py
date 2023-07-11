@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.views.generic.edit import DeleteView
+from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views import generic, View
 from django.http import HttpResponseRedirect
@@ -106,11 +108,8 @@ class PostLike(View):
             return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
-class PostDelete(View):
+class PostDelete(DeleteView):
+    model = Post
 
-    def delete(request, slug):
-
-        post = get_object_or_404(Post, slug=slug)
-        post.delete()
-
-        return render (request, 'post_delete.html', {'post': post})
+    success_url = reverse_lazy('home')
+    template_name = 'account/post_delete.html'

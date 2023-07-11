@@ -24,7 +24,7 @@
             <div>
                 {% if user.is_authenticated %}
                 {% if user.id == post.author.id %}
-                        <button href="{% url 'post_delete' post.slug %}">Delete</button>
+                        <a class="btn btn-outline-danger" href="{% url 'post_delete' post.slug %}">Delete</a>
                         {% endif %}
                 <form class="d-inline" action="{% url 'post_like' post.slug %}">
                     {% csrf_token %}
@@ -37,7 +37,7 @@
                     {% else %}
                 <strong class="text-info"><i class="far fa-heart heart p-1"></i></strong>
                 {% endif %}
-               <strong class="text-info">{{ post.number_of_likes }}</strong> 
+               <strong class="text-light">{{ post.number_of_likes }}</strong> 
             </div>
             
             
@@ -54,7 +54,7 @@
         <div class="row">
             <div class="col-1">
                 {% with comments.count as total_comments %}
-                <strong class="text-info"><i class="far fa-comments p-1"></i>{{ total_comments }}</strong>
+                <strong class="text-light"><i class="far fa-comments p-1 text-info"></i>{{ total_comments }}</strong>
                 {% endwith %}
             </div>
         </div>
