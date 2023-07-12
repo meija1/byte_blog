@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views import generic, View
 from django.http import HttpResponseRedirect
+from django.views.decorators.http import require_http_methods
 from .models import Post, Category
 from .forms import CommentForm, BlogForm
 from . import forms
@@ -69,12 +70,11 @@ def blog_upload(request):
                 form.save()
                 blog_form.save_m2m()
                 messages.add_message(request, messages.SUCCESS, "Form submitted! Waiting approval..")
-                blog_form = BlogForm()
 
             else:
                 blog_form = BlogForm()
 
-        return render(request, "create_post.html", {"blog_form": blog_form, 'approved': True})
+        return render(request, "create_post.html", {"blog_form": blog_form})
 
 
 def category(request, slug):
@@ -115,8 +115,15 @@ class PostUpdate(UpdateView):
     form_class = BlogForm
     success_url = reverse_lazy('home')
 
+    def form_valid(self, form):
+        resp = super().form_valid(form)
 
+        self.object.status = 0  
+        self.object.save()
+        messages.add_message(message.SUCCESS, "Form updated! Waiting approval..")
+        return resp
 
+    
 class PostDelete(DeleteView):
     model = Post
 

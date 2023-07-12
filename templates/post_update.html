@@ -3,31 +3,17 @@
 {% block content %}
 
 <h2 class="text-info text-center">Edit Post</h2>
-<div class=" text-center">
-    {% if messages %}
-    {% for message in messages %}
-    <h2 class="text-warning alert alert-dismissible fade show" role="alert" id="msg">{{ message | safe }}</h2>
-    {% endfor %}
-    {% endif %}
-</div>
+
 <div class="col-md-8 mx-auto text-center d-flex justify-content-center">
 
     <form class="p-3 col-md-8 card bg-secondary text-info border-white" method="POST" enctype="multipart/form-data">
+
     {% csrf_token %}
     {{ form }}
     
-
     <button class="btn btn-outline-warning" type="submit" value="Save">Update</button>
     </form>
     
 </div>
-<script>
-    setTimeout(function() {
-        let messeges = document.getElementById("msg");
-        let alert = new bootstrap.Alert(messeges);
-        alert.close();
-        window.location.replace("{% url 'home' %}");
-    }, 2000);
-    
-</script>
+
 {% endblock content %}
