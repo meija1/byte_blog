@@ -25,6 +25,7 @@
                 {% if user.is_authenticated %}
                 {% if user.id == post.author.id %}
                         <a class="btn btn-outline-danger" href="{% url 'post_delete' post.slug %}">Delete</a>
+                        <a class="btn btn-outline-danger" href="{% url 'post_update' post.slug %}">Edit</a>
                         {% endif %}
                 <form class="d-inline" action="{% url 'post_like' post.slug %}">
                     {% csrf_token %}

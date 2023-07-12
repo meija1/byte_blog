@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views import generic, View
@@ -106,6 +106,14 @@ class PostLike(View):
                 post.likes.add(request.user)
 
             return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+class PostUpdate(UpdateView):
+    model = Post
+
+    fields = ('title', 'content', 'category')
+    template_name = 'account/post_update.html'
+
 
 
 class PostDelete(DeleteView):
