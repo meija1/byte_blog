@@ -74,7 +74,7 @@ def blog_upload(request):
             else:
                 blog_form = BlogForm()
 
-        return render(request, "account/create_post.html", {"blog_form": blog_form, 'approved': True})
+        return render(request, "create_post.html", {"blog_form": blog_form, 'approved': True})
 
 
 def category(request, slug):
@@ -111,8 +111,9 @@ class PostLike(View):
 class PostUpdate(UpdateView):
     model = Post
 
-    fields = ('title', 'content', 'category')
-    template_name = 'account/post_update.html'
+    template_name = 'post_update.html'
+    form_class = BlogForm
+    success_url = reverse_lazy('home')
 
 
 
