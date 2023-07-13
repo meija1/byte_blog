@@ -44,8 +44,8 @@
             </ul>
             {% if user.is_authenticated %}
             <div class="dropdown me-2">
-                <a class="dropdown-toggle text-light" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{
-                    user }}<i class="fa fa-id-card-o px-2 text-info" aria-hidden="true"></i></a>
+                <a class="dropdown-toggle text-light" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ user }}<i class="fa fa-id-card-o px-2 text-info" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{% url 'create_post' %}">Create a post</a></li>
                 </ul>
@@ -59,8 +59,8 @@
     <div class=" text-center">
 
         {% for message in messages %}
-        <h2 class="text-warning {{ message.tags }} alert alert-dismissible fade show" role="alert" id="msg">{{ message |
-            safe }}</h2>
+        <h2 class="text-warning {{ message.tags }} alert alert-dismissible fade show" role="alert" id="msg">
+            {{ message | safe }}</h2>
         {% endfor %}
 
     </div>
