@@ -4,9 +4,10 @@
 <h1 class="text-center">Delete Post?</h1>
 <h2 class="text-center text-info mt-5">{{ post.title }}</h2>
 
-<form class="d-flex justify-content-center"  method="POST">
-    
+<form class="d-flex justify-content-center" method="POST">
+
   {% csrf_token %}
+  
   <button class="btn btn-outline-danger p-3 mt-5" type="submit" value="Confirm">Delete</button>
 </form>
 

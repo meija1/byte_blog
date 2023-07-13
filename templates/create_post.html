@@ -7,13 +7,12 @@
 <div class="col-md-8 mx-auto text-center d-flex justify-content-center">
 
     <form class="p-3 col-md-8 card bg-secondary text-info border-white" method="POST" enctype="multipart/form-data">
-     
-    {{ blog_form }}
-    {% csrf_token %} 
 
-    <button class="btn btn-outline-warning" type="submit">Submit</button>
+        {{ blog_form }}
+        {% csrf_token %}
+
+        <button class="btn btn-outline-warning" type="submit">Submit</button>
     </form>
-    
 </div>
 
 {% endblock content %}

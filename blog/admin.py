@@ -2,12 +2,12 @@ from django.contrib import admin
 from .models import Post, Comment, Category
 from django_summernote.admin import SummernoteModelAdmin
 
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ('name',)}
 
 
-''' Create Admin panel '''
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
 
@@ -18,7 +18,6 @@ class PostAdmin(SummernoteModelAdmin):
     summernote_fields = ('content')
 
 
-''' Create comment Panel for admin interface'''
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
 
@@ -29,4 +28,3 @@ class CommentAdmin(admin.ModelAdmin):
 
     def approve_comments(self, request, queryset):
         queryset.update(approved=True)
-        
