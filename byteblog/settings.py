@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import os
 import dj_database_url
@@ -13,7 +12,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['byte-blog-app.herokuapp.com', 'localhost',
-'8000-meija1-byteblog-mncxluejxwz.ws-eu101.gitpod.io',]
+                 '8000-meija1-byteblog-l29v8to7hyn.ws-eu101.gitpod.io',]
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
@@ -81,8 +80,7 @@ DATABASES = {
 }
 
 #DATABASES = {
-#    'default': dj_database_url.parse(os.environ.get("DATABASE_URL")),
-#}
+#   'default': dj_database_url.parse(os.environ.get("DATABASE_URL")),}
 
 AUTH_PASSWORD_VALIDATORS = [
     {

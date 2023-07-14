@@ -46,9 +46,6 @@ class Post(models.Model):
         super(Post, self).save(*args, **kwargs)
 
 
-''' Create features for admin panels comment section '''
-
-
 class Comment(models.Model):
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name="comments")
