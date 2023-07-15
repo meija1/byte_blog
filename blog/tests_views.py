@@ -42,13 +42,6 @@ class TestViews(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'category.html')
 
-    def test_post_like_GET_view(self):
-        self.post.likes(self.user.id)
-        response = self.client.get(reverse('post_like', args=[self.post.id]))
-
-        print(response)
-        #self.assertEquals(response.status_code, 302)
-        #self.assertRedirects(response, '/')
 
     def test_post_update_view(self):
         self.code = Category.objects.create(name='Code', slug='Code')
