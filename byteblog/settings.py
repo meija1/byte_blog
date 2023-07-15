@@ -11,6 +11,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = False
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
 ALLOWED_HOSTS = ['byte-blog-app.herokuapp.com', 'localhost',
                  '8000-meija1-byteblog-l29v8to7hyn.ws-eu101.gitpod.io',]
 
